@@ -4,9 +4,17 @@ var { buildSchema } = require('graphql');
 const getData = require('../libs/mysql.js')
 
 var schema = buildSchema(`
-  type Query {
-    hello: String
-  }
+type Query {
+  products: Products
+}
+type Products {
+   
+  name: String
+  manufacturer: String
+  price: Int
+  a: String
+  b: String
+}
 `);
 
 var root = { hello: () => 'Hello world!' };
@@ -30,11 +38,21 @@ function someFunctionToGetRootValue(request, response, graphQLParams) {
 
   })
 }
-
+var rootValue = {
+  products: {
+    
+    name: 'String',
+    manufacturer: 'String',
+    price: 1,
+    a: 'String',
+    b: 'String'
+   }
+   
+}
 module.exports = graphqlHTTP(async (request, response, graphQLParams) => {
   return {
     schema: schema,
-    rootValue: await someFunctionToGetRootValue(request, response, graphQLParams),
+    rootValue,
     graphiql: true
   }
 })

@@ -14,5 +14,9 @@ module.exports = [
   {
     url: '/GraphQL/auth',
     map: 'auth'
+  },
+  {
+    url: '/GraphQL/demo',
+    map: 'demo'
   }
 ]
