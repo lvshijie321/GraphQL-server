@@ -15,12 +15,18 @@ app.use(loggingMiddleware)
 app.get('/RESTful/api1', (req, res) => require(`./router/${routers.find(item => item.url === '/RESTful/api1').map}`)(req, res));
 
 
-app.use('/test/GraphQL/api2', require(`./router/${routers.find(item => item.url === '/GraphQL/api2').map}`) ); // 测试
+//app.use('/test/GraphQL/api2', require(`./router/${routers.find(item => item.url === '/GraphQL/api2').map}`) ); // 测试
 app.post('/GraphQL/api2', require(`./router/${routers.find(item => item.url === '/GraphQL/api2').map}`) );
+app.use('/test/GraphQL/api2', require(`./router/${routers.find(item => item.url === '/GraphQL/api2').map}`) );
 
 app.post('/GraphQL/page', require(`./router/${routers.find(item => item.url === '/GraphQL/page').map}`) );
+app.use('/test/GraphQL/page', require(`./router/${routers.find(item => item.url === '/GraphQL/page').map}`) );
+
 app.post('/GraphQL/auth', require(`./router/${routers.find(item => item.url === '/GraphQL/auth').map}`) );
+app.use('/test/GraphQL/auth', require(`./router/${routers.find(item => item.url === '/GraphQL/auth').map}`) );
+
 app.post('/GraphQL/demo', require(`./router/${routers.find(item => item.url === '/GraphQL/demo').map}`) );
+app.use('/test/GraphQL/demo', require(`./router/${routers.find(item => item.url === '/GraphQL/demo').map}`) );
 
 function loggingMiddleware(req, res, next) {
   // !this[Symbol.for('request.instance1')] && (this[Symbol.for('request.instance1')] = new Map())

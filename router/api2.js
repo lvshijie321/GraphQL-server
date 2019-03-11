@@ -5,11 +5,11 @@ const getData = require('../libs/mysql.js')
 
 var schema = buildSchema(`
 type Query {
-  products: Products
+  hello: String
 }
 type Products {
    
-  name: String
+  hello: String
   manufacturer: String
   price: Int
   a: String
@@ -39,14 +39,14 @@ function someFunctionToGetRootValue(request, response, graphQLParams) {
   })
 }
 var rootValue = {
-  products: {
+  
     
-    name: 'String',
+    hello: 'String',
     manufacturer: 'String',
     price: 1,
     a: 'String',
     b: 'String'
-   }
+    
    
 }
 module.exports = graphqlHTTP(async (request, response, graphQLParams) => {

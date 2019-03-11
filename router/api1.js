@@ -1,3 +1,8 @@
+var http = require('http');
+var express = require('express');
+var fs=require("fs");
+
+
 const result = `
   {
     "code": 200,
@@ -17,5 +22,25 @@ const result = `
   }
 `
 module.exports = (req, res) => {
-  res.end(result)
+  var path="C:/Learning-projects/anydoor/src/demo.xlsx";
+  // var f = fs.createReadStream(path);
+  // res.writeHead(200, {
+  //   'Content-Type': 'application/octet-stream',
+  //   'filename': '1.xlsx',
+  //   'Content-Disposition': 'attachment; filename=demo.xlsx'
+  // });
+  // f.pipe(res);
+
+  fs.readFile(path, function(isErr, data){  
+    if (isErr) {  
+           res.end("Read file failed!");  
+           return;  
+     }  
+     res.writeHead(200,{
+           'Content-Type': 'application/octet-stream', //告诉浏览器这是一个二进制文件  
+           'Content-Disposition': 'attachment; filename=' + '1.xlsx', //告诉浏览器这是一个需要下载的文件  
+     });  
+     res.end(data)  
+})
+
 }
